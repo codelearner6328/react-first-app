@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>I'm learning an this is a test js code file</h1>
+
+  <script>
+    "use strict"
+    // d = 98;
+
+    function hello() {
+      console.log('Hi abdul');
+    }
+
+    // trying objects. in console message i can user obja.r to get 20 val.
+    let obja = {
+      r: 20,
+      m: 30,
+      customFunction: function (number) {
+        console.log('This is a  number ' + number);  //obja.customFunction(40) for consle.log
+      }
+    }
+
+    // event listener
+    document.addEventListener("click", function click() {
+      console.log('clicked');
+      let conf = confirm('Are you sure?');
+      console.log(conf);
+    })
+
+    let arr = ['10', '20', '30'];
+    // arr.forEach
+    // console.log(this);
+
+    // function myfunc(number) {
+    //   console.log('the number is: ' + this);
+    // }
+
+    // arrow function
+    // let myfunc = (number) => {
+    //   console.log('the number is: ' + this);
+    // }
+    // myfunc(10);
+
+    // wrapping function into objects
+    let mobj = {
+      myfunc: (number) => {
+        // this is window object.
+        console.log('the number is: ' + this);
+      },
+      myfunc2: function (number) {
+        // now this bind my the function myfunc2 and not the window this object.
+        console.log('the number is: ' + this);
+      }
+    }
+    mobj.myfunc(10);
+    mobj.myfunc2();
+
+    // callbacks(enovke after something done)
+    setTimeout(() => {
+      console.log('i am callback function and run after the 3 sec of below scripts');
+    }, 3000);
+    console.log('this line print before callback');
+  </script>
+
+</body>
+
+</html>
