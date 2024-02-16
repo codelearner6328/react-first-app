@@ -91,7 +91,10 @@ function App() {
         <Alert alert={alert} />
         <div className={`container  my-3 ${darkMode ? "on" : "off"} `}>
           <Routes>
-            <Route element={<TextForm />} path="/" eading="Enter text to analyze" darkMode={darkMode} showAlert={showAlert}>
+            <Route
+              // element={<TextForm />} 
+              element={<TextForm heading="Enter text to analyze" darkMode={darkMode} showAlert={showAlert} />}
+              path="/" showAlert={showAlert}>
               {/* <TextForm heading="Enter text to analyze" darkMode={darkMode} showAlert={showAlert} /> */}
             </Route>
             <Route path="/about" element={<About />}> </Route>
