@@ -73,7 +73,9 @@ export default function TextForm(props) {
         props.showAlert('Extra spaces removed', 'success', 'success');
     }
 
-    const disabled = text.length == 0;
+    const disabled = text.length === 0; //for disabling button if text if empty
+
+
 
     return (
         <>
