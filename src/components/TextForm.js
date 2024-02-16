@@ -72,6 +72,9 @@ export default function TextForm(props) {
         setText(textWithNoExtraSpace);
         props.showAlert('Extra spaces removed', 'success', 'success');
     }
+
+    const disabled = text.length == 0;
+
     return (
         <>
             <div className={`container ${props.darkMode ? "on" : "off"} `}>
@@ -79,22 +82,24 @@ export default function TextForm(props) {
                 <div className="mb-3">
                     <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
                 </div>
-                <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to upper case</button>
-                <button className="btn btn-primary mx-2" onClick={handleLoClick}>Conver to lower case</button>
-                <button className="btn btn-outline-primary mx-2" onClick={handleClearClick}>Clear Text</button>
-                <button className="btn btn-primary mx-2" onClick={handleEmailExtract}>Extract email addresses</button>
-                <button type="submit" onClick={speak} className="btn btn-warning mx-2 my-2">Speak <i className='fas fa-volume-down'></i></button>
-                <button className="btn btn-primary  mx-2" onClick={handleCopyText}>Copy Text</button>
-                <button className="btn btn-primary mx-2" onClick={handleRemoveExtraSpaces}>Remove Extra Spaces</button>
+                <button disabled={disabled} className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>Convert to upper case</button>
+                <button disabled={disabled} className="btn btn-primary mx-2 my-1" onClick={handleLoClick}>Conver to lower case</button>
+                <button disabled={disabled} className="btn btn-outline-primary mx-2 my-1" onClick={handleClearClick}>Clear Text</button>
+                <button disabled={disabled} className="btn btn-primary mx-2 my-1" onClick={handleEmailExtract}>Extract email addresses</button>
+                <button disabled={disabled} type="submit" onClick={speak} className="btn btn-warning mx-2 my-2">Speak <i className='fas fa-volume-down'></i></button>
+                <button disabled={disabled} className="btn btn-primary  mx-2 my-1" onClick={handleCopyText}>Copy Text</button>
+                <button disabled={disabled} className="btn btn-primary mx-2 my-1" onClick={handleRemoveExtraSpaces}>Remove Extra Spaces</button>
             </div>
             <div className="container my-3">
                 <h2>Your text summary</h2>
                 {/* <p>{text.split(" ").length} words, {text.length} characters</p> */}
-                <p>{text.trim() === '' ? 0 : text.match(/\S+/g).length} words and {text.replace(/\s+/g, '').length} characters</p>
+                {/* <p>{text.trim() === '' ? 0 : text.match(/\S+/g).length} words and {text.replace(/\s+/g, '').length} characters</p> */}
+                <p>{text.split(" ").filter((item) => { return item.length !== 0 }).length} words, {text.length} characters</p>
                 {/* 125 words can be read in 1 minute, so to get the time of 1 word, 1/125=0.008 */}
                 <p>
                     {/* {0.008 * text.split(" ").length} */}
-                    {0.008 * text.replace(/\s+/g, '').length}   minute required to read the above text</p>
+                    {0.008 * text.split(" ").filter((item) => { return item.length !== 0 }).length}   minute required to read the above text</p>
+                {/* {0.008 * text.replace(/\s+/g, '').length}   minute required to read the above text</p> */}
                 <h2>Preview</h2>
                 <p>{text.length > 0 ? text : "Enter text to preview"}</p>
                 <h2>Extracted Emails</h2>
