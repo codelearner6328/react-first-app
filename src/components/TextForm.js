@@ -14,6 +14,7 @@
 // }
 
 import React, { useState } from 'react'
+// import { useNavigate } from 'react-router-dom';
 export default function TextForm(props) {
     // const zubair = useState("Zubair is good developer, he thought.");
     // console.log(zubair);
@@ -66,11 +67,15 @@ export default function TextForm(props) {
         navigator.clipboard.writeText(text);
         props.showAlert('Text copied', 'success', 'success');
     }
+
+    // const navigate = useNavigate();
+
     // remove extra spaces
     const handleRemoveExtraSpaces = () => {
         const textWithNoExtraSpace = text.replace(/\s+/g, ' ');
         setText(textWithNoExtraSpace);
         props.showAlert('Extra spaces removed', 'success', 'success');
+        // navigate('/about');
     }
 
     const disabled = text.length === 0; //for disabling button if text if empty
